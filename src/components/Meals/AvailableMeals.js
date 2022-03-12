@@ -11,7 +11,7 @@ const DUMMY_MEALS = [
     {
         id: 'm2',
         name: 'Schnitzel',
-        description: 'A german specialtyservered with the finest lager! (only for those over 18 years old)',
+        description: 'A german specialty served with the finest lager! (Lager only for those over 18 years old.)',
         price: 16.5,
     },
     {
@@ -31,6 +31,7 @@ const DUMMY_MEALS = [
 export default function AvailableMeals() {
     const mealsList = DUMMY_MEALS.map((meal) => (
         <MealItem
+            id={meal.id}
             key={meal.id}
             name={meal.name}
             description={meal.description}
