@@ -11,7 +11,11 @@ export default function AvailableMeals() {
 
     useEffect(() => {
         const fetchMeals = async () => {
-            const response = await fetch('https://reat-http-e327e-default-rtdb.firebaseio.com/meals.json');
+            const response = await fetch(
+                'https://reat-http-e327e-default-rtdb.firebaseio.com/meals.json', {method:'GET', mode: 'cors'}
+            );
+
+
             if (!response.ok) {
                 throw new Error('Something went wrong!');
             }
@@ -21,12 +25,15 @@ export default function AvailableMeals() {
             const loadedMeals = [];
 
             for (const key in responseData) {
-                loadedMeals.push({
-                    id: key,
-                    name: responseData[key].name,
-                    description: responseData[key].description,
-                    price: responseData[key].price,
-                });
+                if (responseData[key].price) {
+                    loadedMeals.push({
+                        id: key,
+                        name: responseData[key].name,
+                        description: responseData[key].description,
+                        price: responseData[key].price,
+                    });
+                }
+
             }
 
             setMeals(loadedMeals);
